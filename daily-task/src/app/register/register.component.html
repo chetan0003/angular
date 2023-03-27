@@ -1,0 +1,27 @@
+<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<!------ Include the above in your HEAD tag ---------->
+
+<div class="wrapper fadeInDown">
+  <h6>{{msg}}</h6>
+  <div id="formContent">
+    <!-- Tabs Titles -->
+
+    <!-- Icon -->
+    <div class="fadeIn first">
+      <img src="https://toppng.com/public/uploads/preview/user-account-management-logo-user-icon-11562867145a56rus2zwu.png" alt="User Icon" width="30" height="30"  />
+    </div>
+
+    <!-- Login Form -->
+    <form>
+      <input type="text" [(ngModel)] = "user.userName" id="userName" class="fadeIn second" name="userName" placeholder="username">
+      <input type="text" [(ngModel)] = "user.firstName" id="firstName" class="fadeIn second" name="firstName" placeholder="first name">
+      <input type="text" [(ngModel)] = "user.lastName" id="lastName" class="fadeIn second" name="lastName" placeholder="last name">
+      <input type="text" [(ngModel)] = "user.email" id="email" class="fadeIn third" name="email" placeholder="email">
+      <input type="text" [(ngModel)] = "user.password" id="password" class="fadeIn third" name="password" placeholder="password">
+      <input type="button" (click)="registerUser()" class="fadeIn fourth" value="Register">
+    </form>
+
+  </div>
+</div>
