@@ -44,6 +44,8 @@ export class HolidayComponent implements OnInit {
         if((result as Response).statusCode == 201) {
           
           this.getAllHolidays();
+        } else {
+          this.msg = (result as Response).message;
         }
       }))
     } else {
