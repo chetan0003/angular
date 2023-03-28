@@ -31,7 +31,6 @@ export class MyService {
 
   //Login 
   logIn(user:User) {
-    console.log(user)
     return this.http.post('http://localhost:9999/authenticate', user);
   }
 

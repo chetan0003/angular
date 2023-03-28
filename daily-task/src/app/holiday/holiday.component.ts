@@ -3,6 +3,7 @@ import { User } from '../classes/user';
 import { Holiday } from '../classes/holiday'
 import { Response } from '../classes/response';
 import { MyService } from '../service';
+import { Router } from '@angular/router';
 
 
 @Component({
@@ -15,7 +16,8 @@ export class HolidayComponent implements OnInit {
   currentUser:any;
   userId:any;
   counter:number = 0;
-
+  updaeBtnFlag:number = 0;
+  msg:any;
   ngOnInit(): void {
     this.getAllHolidays();
   }
@@ -27,22 +29,26 @@ export class HolidayComponent implements OnInit {
     userId: 0
   };
   holidayArray=new Array<Holiday>();
-  constructor(private myService:MyService) {
+  constructor(private myService:MyService,private router:Router) {
     this.currentUser = localStorage.getItem('currentUser');
     this.userId = localStorage.getItem('userId');
   }
 
   addHoliday() {
+   
     this.holiday.userId = this.userId;
     console.log(this.holiday.name);
     
-    if(this.holiday.name !== " " && this.holiday.date !== undefined) {
+    if(this.holiday.name !== '' ) {
       this.myService.addHoliday(this.holiday).subscribe((result => {
         if((result as Response).statusCode == 201) {
           
           this.getAllHolidays();
         }
       }))
+    } else {
+      this.msg = "holiday name field mandatory";
+      console.log(this.msg)
     }
     
   }
@@ -61,6 +67,7 @@ export class HolidayComponent implements OnInit {
     this.holiday.name = holiday.name;
     this.holiday.date = holiday.date;
     holiday.userId = this.userId;
+    this.updaeBtnFlag = 1;
     console.log(holiday);
   }
 
@@ -75,7 +82,7 @@ export class HolidayComponent implements OnInit {
 
   deleteHoliday(holiday:Holiday) {
     this.myService.deleteHoliday(holiday.id).subscribe((result => {
-      window.location.href = "/holiday"
+     this.getAllHolidays();
     }))
   }
 }

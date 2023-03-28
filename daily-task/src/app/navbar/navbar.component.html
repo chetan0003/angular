@@ -1,6 +1,21 @@
-<nav  class="navbar" style="background-color: #e3f2fd;">
-  <div class="container-fluid">
+<nav  class="navbar" style="background-color: #e3f2fd;" *ngIf='currentUser === null'>
+  <div class="container-fluid" >
     <a class="navbar-brand" href="#">
+      <img src="https://static.vecteezy.com/system/resources/previews/000/420/851/original/vector-home-icon.jpg" alt="Logo" width="30" height="30" class="d-inline-block align-text-top">
+      &nbsp;<b>Daily Task</b> 
+    </a>
+    <ul>
+      <li *ngIf='currentUser === null'><a routerLink="login">Sign In</a></li>
+      <li *ngIf='currentUser === null'><a routerLink="register">Sign Up</a></li>
+      <li *ngIf='currentUser !== null'><h6 >{{currentUser}}</h6></li>
+      <li *ngIf='currentUser !== null'><button (click)="logOut()" style="background-color: white; color: black; border: 2px solid #008CBA;">SignOut</button></li>
+   </ul>
+  </div>
+</nav>
+
+<nav  class="navbar" style="background-color: #e3f2fd;" *ngIf='currentUser !== null'>
+  <div class="container-fluid" >
+    <a class="navbar-brand" routerLink="/home">
       <img src="https://static.vecteezy.com/system/resources/previews/000/420/851/original/vector-home-icon.jpg" alt="Logo" width="30" height="30" class="d-inline-block align-text-top">
       &nbsp;<b>Daily Task</b> 
     </a>

@@ -29,6 +29,8 @@ export class RegisterComponent {
   
 
   registerUser() {
+    if(this.user.userName !== '' && this.user.password !== '') {
+    
       this.myService.registerUser(this.user).subscribe((result => {
         console.log((result as Response).statusCode)
         if((result as Response).statusCode == 422) {
@@ -38,5 +40,9 @@ export class RegisterComponent {
              window.location.href = "login"
          }
       }));
+    } else {
+      this.msg = "user name and password are mandatory to be registered..!"
+    }
+      
   }
 }

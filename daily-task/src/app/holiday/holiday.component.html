@@ -34,6 +34,7 @@
         <div class="col py-3">
            
             <section class="vh-100" style="background-color: #eee; ">
+              
                 <div class="container py-5 h-100">
                   <div class="row d-flex justify-content-center align-items-center h-100">
                     <div class="col col-lg-9 col-xl-7">
@@ -41,9 +42,10 @@
                         <div class="card-body p-4">
               
                           <h4 class="text-center my-3 pb-3">Holiday</h4>
-              
+                          
                           <form class="row row-cols-lg-auto g-3 justify-content-center align-items-center mb-4 pb-2" *ngIf='currentUser === "chetan03"'>
                             <div class="col-12">
+                              <h6 style="color: red">{{msg}}</h6>
                               <div class="form-outline">
                                 <input type="hidden" [(ngModel)] = "holiday.id" id="id" name= "id"/>
                                 <input type="text"  [(ngModel)] = "holiday.name" id="name" name= "name" class="form-control"  placeholder="Holiday name" required/>
@@ -55,7 +57,7 @@
                             <div class="col-12">
                               <button type="submit" class="btn btn-primary" (click)="addHoliday()">Add Holiday</button>
                             </div>
-                            <div class="col-12">
+                            <div class="col-12" *ngIf='updaeBtnFlag === 1'>
                               <button type="submit" class="btn btn-primary" (click)="updateHoliday(holiday)">Update Holiday</button>
                             </div>
             
@@ -77,8 +79,8 @@
                                 <td>{{holiday.name}}</td>
                                 <td>{{holiday.date}}</td>
                                 <td>
-                                  <button type="submit" (click)="deleteHoliday(holiday)" class="btn btn-danger">Delete</button>
-                                  <button type="submit" (click)="editHoliday(holiday)" class="btn btn-success ms-1">Edit</button>
+                                  <button type="submit" (click)="deleteHoliday(holiday)" class="btn btn-danger" style="background-color: white; color: black; border: 2px solid #af4c4c;">Delete</button>
+                                  <button type="submit" (click)="editHoliday(holiday)" class="btn btn-success ms-1" style="background-color: white; color: black; border: 2px solid #4CAF50;">Edit</button>
                                 </td>
                               </tr>
                               

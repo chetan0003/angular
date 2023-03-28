@@ -30,8 +30,10 @@ export class LoginComponent {
   }
   
   logIn() {
-    console.log(this.user)
-
+    console.log(this.user.userName)
+    if(this.user.userName !== '' && this.user.password !== '') {
+      console.log(this.user.userName)
+  
     this.myService.logIn(this.user).subscribe((result) => {
       console.log(result);
      if((result as Response).statusCode == 401) {
@@ -39,8 +41,8 @@ export class LoginComponent {
      } else {
       localStorage.setItem("currentUser",(((result as Response).data) as User).userName);
       localStorage.setItem("token",(((result as Response).data) as User).token);
-       console.log((((result as Response).data) as User).id.toString);
-       console.log((result as Response));
+      //  console.log((((result as Response).data) as User).id.toString);
+      //  console.log((result as Response));
        
         this.userId = String((((result as Response).data) as User).id)
       localStorage.setItem("userId",this.userId);
@@ -48,6 +50,9 @@ export class LoginComponent {
       }
       
     });
+  } else {
+    this.msg ="Please ener user name and password to be logged In";
+  }
   }
 
 }
